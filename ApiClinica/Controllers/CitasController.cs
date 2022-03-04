@@ -16,6 +16,7 @@ namespace ApiClinica.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class CitasController : ControllerBase
     {
         private readonly ICitaRepositorio _citaRepositorio;

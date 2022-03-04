@@ -16,6 +16,7 @@ namespace ApiClinica.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class HorariosController : ControllerBase
     {
         private readonly IHorarioRepositorio _horarioRepositorio;

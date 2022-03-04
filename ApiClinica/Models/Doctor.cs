@@ -11,13 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ApiClinica.Models
 {
     public class Doctor
     {
         public Doctor()
         { 
-            Cita = new HashSet<Cita>();
+            this.Citas = new HashSet<Cita>();
         }
         [Key]
         public int idDoctor { get; set; }
@@ -27,11 +29,15 @@ namespace ApiClinica.Models
         public string celularDoctor { get; set; }
         public int Usuario_idUsuario { get; set; }
         public int Especialidad_idEspecialidad { get; set; }
-        public int Horario_idHorario { get; set; }
 
-        public virtual ICollection<Cita> Cita { get; set; }
-        public virtual Usuario Usuario_idUsuarioNavigation { get; set; }
-        public virtual Especialidad Especialidad_idEspecialidadNavigation { get; set; }
-        public virtual Horario Horario_idHorarioNavigation { get; set; }
+        [NotMapped]
+        public virtual Usuario Usuario { get; set; }
+        [NotMapped]
+        public virtual Especialidad Especialidad { get; set; }
+        [NotMapped]
+        public virtual ICollection<Cita> Citas { get; set; }
+       //ublic virtual Usuario Usuario_idUsuarioNavigation { get; set; }
+       //ublic virtual Especialidad Especialidad_idEspecialidadNavigation { get; set; }
+       //ublic virtual Horario Horario_idHorarioNavigation { get; set; }
     }
 }

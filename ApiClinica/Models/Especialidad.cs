@@ -11,20 +11,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ApiClinica.Models
 {
     public class Especialidad
     {
         public Especialidad()
         {   
-            Doctor = new HashSet<Doctor>();
+            this.Doctors = new HashSet<Doctor>();
         }
 
         [Key]
         public int idEspecialidad { get; set; }
         public string nombreEspecialidad { get; set; }
 
-
-        public virtual ICollection<Doctor> Doctor { get; set; }
+        [NotMapped]
+        public virtual ICollection<Doctor> Doctors { get; set; }
     }
 }

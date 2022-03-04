@@ -16,6 +16,7 @@ namespace ApiClinica.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class HistorialsController : ControllerBase
     {
         private readonly IHistorialRepositorio _historialRepositorio;

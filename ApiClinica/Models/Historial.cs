@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.OpenApi.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiClinica.Models
 {
@@ -26,7 +27,10 @@ namespace ApiClinica.Models
         public string prescripcion { get; set; }
         public int Paciente_idPaciente { get; set; }
 
+        [NotMapped]
+        public virtual Paciente Paciente { get; set; }
 
-        public virtual Paciente Paciente_idPacienteNavigation { get; set; }
+
+       // public virtual Paciente Paciente_idPacienteNavigation { get; set; }
     }
 }

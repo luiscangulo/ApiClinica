@@ -2,7 +2,7 @@
 
 namespace ApiClinica.Migrations
 {
-    public partial class AgregarCitaDb : Migration
+    public partial class AgregarPacienteDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

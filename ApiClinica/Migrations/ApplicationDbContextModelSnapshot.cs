@@ -29,13 +29,7 @@ namespace ApiClinica.Migrations
                     b.Property<int>("Doctor_idDoctor")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Doctor_idDoctorNavigationidDoctor")
-                        .HasColumnType("int");
-
                     b.Property<int>("Paciente_idPaciente")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Paciente_idPacienteNavigationId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("fechaCita")
@@ -45,10 +39,6 @@ namespace ApiClinica.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("idCita");
-
-                    b.HasIndex("Doctor_idDoctorNavigationidDoctor");
-
-                    b.HasIndex("Paciente_idPacienteNavigationId");
 
                     b.ToTable("Citas");
                 });
@@ -63,19 +53,7 @@ namespace ApiClinica.Migrations
                     b.Property<int>("Especialidad_idEspecialidad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Especialidad_idEspecialidadNavigationidEspecialidad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Horario_idHorario")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Horario_idHorarioNavigationidHorario")
-                        .HasColumnType("int");
-
                     b.Property<int>("Usuario_idUsuario")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Usuario_idUsuarioNavigationidUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("apellidosDoctor")
@@ -91,12 +69,6 @@ namespace ApiClinica.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idDoctor");
-
-                    b.HasIndex("Especialidad_idEspecialidadNavigationidEspecialidad");
-
-                    b.HasIndex("Horario_idHorarioNavigationidHorario");
-
-                    b.HasIndex("Usuario_idUsuarioNavigationidUsuario");
 
                     b.ToTable("Doctors");
                 });
@@ -126,9 +98,6 @@ namespace ApiClinica.Migrations
                     b.Property<int>("Paciente_idPaciente")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Paciente_idPacienteNavigationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("alergia")
                         .HasColumnType("nvarchar(max)");
 
@@ -146,8 +115,6 @@ namespace ApiClinica.Migrations
 
                     b.HasKey("idHistorial");
 
-                    b.HasIndex("Paciente_idPacienteNavigationId");
-
                     b.ToTable("Historials");
                 });
 
@@ -160,6 +127,9 @@ namespace ApiClinica.Migrations
 
                     b.Property<string>("dias")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("doctor_idDoctor")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("horaIngreso")
                         .HasColumnType("datetime2");
@@ -180,9 +150,6 @@ namespace ApiClinica.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Usuario_idUsuario")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Usuario_idUsuarioNavigationidUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("apellidoMaterno")
@@ -223,8 +190,6 @@ namespace ApiClinica.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Usuario_idUsuarioNavigationidUsuario");
-
                     b.ToTable("Pacientes");
                 });
 
@@ -247,46 +212,6 @@ namespace ApiClinica.Migrations
                     b.HasKey("idUsuario");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("ApiClinica.Models.Cita", b =>
-                {
-                    b.HasOne("ApiClinica.Models.Doctor", "Doctor_idDoctorNavigation")
-                        .WithMany("Cita")
-                        .HasForeignKey("Doctor_idDoctorNavigationidDoctor");
-
-                    b.HasOne("ApiClinica.Models.Paciente", "Paciente_idPacienteNavigation")
-                        .WithMany("Cita")
-                        .HasForeignKey("Paciente_idPacienteNavigationId");
-                });
-
-            modelBuilder.Entity("ApiClinica.Models.Doctor", b =>
-                {
-                    b.HasOne("ApiClinica.Models.Especialidad", "Especialidad_idEspecialidadNavigation")
-                        .WithMany("Doctor")
-                        .HasForeignKey("Especialidad_idEspecialidadNavigationidEspecialidad");
-
-                    b.HasOne("ApiClinica.Models.Horario", "Horario_idHorarioNavigation")
-                        .WithMany("Doctor")
-                        .HasForeignKey("Horario_idHorarioNavigationidHorario");
-
-                    b.HasOne("ApiClinica.Models.Usuario", "Usuario_idUsuarioNavigation")
-                        .WithMany("Doctor")
-                        .HasForeignKey("Usuario_idUsuarioNavigationidUsuario");
-                });
-
-            modelBuilder.Entity("ApiClinica.Models.Historial", b =>
-                {
-                    b.HasOne("ApiClinica.Models.Paciente", "Paciente_idPacienteNavigation")
-                        .WithMany("Historial")
-                        .HasForeignKey("Paciente_idPacienteNavigationId");
-                });
-
-            modelBuilder.Entity("ApiClinica.Models.Paciente", b =>
-                {
-                    b.HasOne("ApiClinica.Models.Usuario", "Usuario_idUsuarioNavigation")
-                        .WithMany("Paciente")
-                        .HasForeignKey("Usuario_idUsuarioNavigationidUsuario");
                 });
 #pragma warning restore 612, 618
         }

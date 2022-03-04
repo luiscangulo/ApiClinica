@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiClinica.Models
 {
@@ -18,8 +19,8 @@ namespace ApiClinica.Models
     {
         public Usuario()
         {
-            Doctor = new HashSet<Doctor>();
-            Paciente = new HashSet<Paciente>();
+            this.Doctors = new HashSet<Doctor>();
+            this.Pacientes = new HashSet<Paciente>();
         }
 
 
@@ -30,11 +31,13 @@ namespace ApiClinica.Models
         
         public byte[] PasswordHash {  get; set; }
 
-        public byte[] PasswordSalt {  get; set; }   
+        public byte[] PasswordSalt {  get; set; }
 
 
-        public virtual ICollection<Doctor> Doctor { get; set; }
-        public virtual ICollection<Paciente> Paciente { get; set; }
+        [NotMapped]
+        public virtual ICollection<Doctor> Doctors { get; set; }
+        [NotMapped]
+        public virtual ICollection<Paciente> Pacientes { get; set; }
 
     }
 }

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.OpenApi.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiClinica.Models
 {
@@ -19,8 +20,8 @@ namespace ApiClinica.Models
     {
        public Paciente()
         {
-            Cita = new HashSet<Cita>();
-            Historial = new HashSet<Historial>();
+            this.Citas = new HashSet<Cita>();
+            this.Historials = new HashSet<Historial>();
         }
 
 
@@ -47,11 +48,16 @@ namespace ApiClinica.Models
 
         public int Usuario_idUsuario { get; set; }
 
+        [NotMapped]
+        public virtual Usuario Usuario { get; set; }
 
 
-        public virtual Usuario Usuario_idUsuarioNavigation { get; set; }
-        public virtual ICollection<Cita> Cita { get; set; }
-        public virtual ICollection<Historial> Historial { get; set; }
+
+        //public virtual Usuario Usuario_idUsuarioNavigation { get; set; }
+        [NotMapped]
+        public virtual ICollection<Cita> Citas { get; set; }
+        [NotMapped]
+        public virtual ICollection<Historial> Historials { get; set; }
 
     }
 }
